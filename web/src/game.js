@@ -185,6 +185,51 @@ export function initGame(canvasRef) {
         scatterTrees(600, 600, 600, 50); // South East Forest
 
         // ----------------------------------------------------------------
+        // 3.5 ENVIRONMENTAL EFFECTS (FALLING LEAVES/SPORES)
+        // ----------------------------------------------------------------
+        k.loop(0.2, () => {
+            if (isPaused) return;
+
+            // Spawn relative to current camera position to ensure they always fall around the player
+            const cam = k.camPos();
+            const spawnX = cam.x + (Math.random() - 0.5) * k.width() * 1.5;
+            const spawnY = cam.y - k.height() / 2 - 50;
+
+            const leaf = k.add([
+                k.rect(Math.random() * 6 + 2, Math.random() * 6 + 2, { radius: 2 }),
+                k.color(
+                    Math.random() > 0.5 ? 40 : 200, // Mix of deep forest green and golden
+                    Math.random() > 0.5 ? 200 : 215,
+                    Math.random() > 0.5 ? 40 : 0
+                ),
+                k.pos(spawnX, spawnY),
+                k.opacity(Math.random() * 0.5 + 0.1),
+                k.z(20000), // Above everything
+                "particle",
+                {
+                    speedY: Math.random() * 40 + 20,
+                    swayFreq: Math.random() * 2 + 1,
+                    swayAmp: Math.random() * 30 + 10,
+                    initX: spawnX,
+                    time: Math.random() * 100
+                }
+            ]);
+
+            leaf.onUpdate(() => {
+                if (isPaused) return;
+                leaf.time += k.dt();
+                leaf.pos.y += leaf.speedY * k.dt();
+                // Gentle swaying side to side to simulate wind
+                leaf.pos.x = leaf.initX + Math.sin(leaf.time * leaf.swayFreq) * leaf.swayAmp;
+
+                // Destroy when far below the camera
+                if (leaf.pos.y > k.camPos().y + k.height() / 2 + 100) {
+                    leaf.destroy();
+                }
+            });
+        });
+
+        // ----------------------------------------------------------------
         // 4. HIGH-RES PLAYER SETUP
         // ----------------------------------------------------------------
         const speed = 350; // Faster movement for bigger map
