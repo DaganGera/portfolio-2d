@@ -6,9 +6,7 @@ import { Github, Linkedin, Instagram, Mail, X, User } from 'lucide-react';
 function App() {
   const canvasRef = useRef(null);
   const gameRef = useRef(null);
-  const audioRef = useRef(null);
   const [modalContent, setModalContent] = useState(null);
-  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
 
   useEffect(() => {
     let k;
@@ -34,32 +32,6 @@ function App() {
     };
   }, []);
 
-  // Handle first interaction for Audio Autoplay (Browsers block true autoplay)
-  useEffect(() => {
-    const startAudio = () => {
-      if (audioRef.current && !isPlayingAudio) {
-        audioRef.current.volume = 0.3; // Keep it atmospheric and quiet
-        audioRef.current.play().then(() => {
-          setIsPlayingAudio(true);
-        }).catch(err => console.log("Audio play blocked by browser:", err));
-      }
-      // Remove listeners after first interaction
-      window.removeEventListener('click', startAudio);
-      window.removeEventListener('touchstart', startAudio);
-      window.removeEventListener('keydown', startAudio);
-    };
-
-    window.addEventListener('click', startAudio);
-    window.addEventListener('touchstart', startAudio);
-    window.addEventListener('keydown', startAudio);
-
-    return () => {
-      window.removeEventListener('click', startAudio);
-      window.removeEventListener('touchstart', startAudio);
-      window.removeEventListener('keydown', startAudio);
-    };
-  }, [isPlayingAudio]);
-
   const handleClose = () => {
     setModalContent(null);
     window.dispatchEvent(new CustomEvent('resumeGame'));
@@ -67,13 +39,6 @@ function App() {
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-black flex items-center justify-center text-white">
-      {/* Hidden Ambient Audio Player (Public Domain / Royalty Free nature + lo-fi track) */}
-      <audio
-        ref={audioRef}
-        src="https://cdn.pixabay.com/download/audio/2022/05/16/audio_9671f652ee.mp3?filename=forest-lullaby-110624.mp3"
-        loop
-      />
-
       {/* Game Canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full block" />
 

@@ -43,6 +43,17 @@ export function initGame(canvasRef) {
     loadSvgSafe("library", SPRITES.library);
     loadSvgSafe("postoffice", SPRITES.postoffice);
 
+    // Load Ambient Background Music
+    k.loadSound("bgm", "https://cdn.pixabay.com/download/audio/2022/05/16/audio_9671f652ee.mp3?filename=forest-lullaby-110624.mp3");
+
+    let isMusicPlaying = false;
+    const playMusic = () => {
+        if (!isMusicPlaying) {
+            isMusicPlaying = true;
+            k.play("bgm", { loop: true, volume: 0.3 });
+        }
+    };
+
     k.scene("main", () => {
         // ----------------------------------------------------------------
         // 1. WORLD GENERATION (LARGE ORGANIC MAP)
@@ -434,6 +445,7 @@ export function initGame(canvasRef) {
         ]);
 
         k.onTouchStart((id, pos) => {
+            playMusic(); // Start audio on first touch
             if (isPaused) return;
             // Only activate joystick if touching the left half of the screen
             if (pos.x < k.width() / 2) {
