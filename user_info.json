@@ -1,0 +1,68 @@
+{
+  "name": "Marcben James Samuel S",
+  "role": "ML Engineer",
+  "email": "marcbenjames007@gmail.com",
+  "socials": {
+    "github": "https://github.com/DaganGera",
+    "instagram": "https://instagram.com/marcben.js",
+    "linkedin": "https://www.linkedin.com/in/marcben-james-samuel-117405385/"
+  },
+  "bio": "Machine Learning Engineer skilled in Python, data preprocessing, and building models with TensorFlow, PyTorch, and Scikit-learn. Experienced in supervised/unsupervised learning, deep learning, and NLP. Passionate about deploying scalable AI solutions using APIs, Docker, and cloud platforms.",
+  "education": [
+    {
+      "degree": "B.Tech — Artificial Intelligence & Data Science",
+      "school": "St. Joseph's College of Engineering, Chennai",
+      "status": "Expected Graduation: 2028 (CGPA: 8.88)"
+    }
+  ],
+  "experience": [
+    {
+      "role": "Backend Database Developer Intern",
+      "company": "LGTG Solutions Pvt. Ltd. (Remote)",
+      "date": "Jan–Feb 2026",
+      "desc": "Built an offline multilingual (Tamil/Hindi/English) government voice assistant using low-latency RAG architecture."
+    },
+    {
+      "role": "Software/Data Intern",
+      "company": "Altascio Technologies (On-site)",
+      "date": "Dec 2025",
+      "desc": "Performed data analysis and preprocessing in collaboration with development teams."
+    },
+    {
+      "role": "Data Analytics Intern",
+      "company": "IQmath Technologies LLP (Remote)",
+      "date": "Dec 2025",
+      "desc": "Analyzed datasets and generated reports to produce actionable insights."
+    }
+  ],
+  "projects": [
+    {
+      "title": "Govt Voice Assistant (RAG)",
+      "desc": "A production-ready, offline-capable voice assistant for Government services supporting Tamil, Hindi, and English using RAG-first architecture."
+    },
+    {
+      "title": "System Health Monitoring App",
+      "desc": "A comprehensive hardware monitoring app built with Python and PyQt6 for real-time monitoring, wear tracking, and AI-powered analysis."
+    },
+    {
+      "title": "Crime Rate Prediction System",
+      "desc": "Built a safety score and crime rate prediction system integrating Maps API with public datasets."
+    },
+    {
+      "title": "Glider Distance Estimation",
+      "desc": "Implemented glider distance estimation using YOLO object detection and trajectory analysis."
+    }
+  ],
+  "skills": [
+    "Python", "JavaScript", "HTML & CSS", "Java", "C",
+    "TensorFlow", "PyTorch", "Scikit-learn", "Pandas", "NumPy",
+    "SQL", "Git", "Docker", "UI/UX", "OpenCV"
+  ],
+  "achievements": [
+    "National Hackathon Winner — Vel Tech (Cyber Guardians'26)",
+    "Best Project — National Hackathon, New Prince College (2025)",
+    "NPTEL Silver Medal (2025)",
+    "1st Place — IEEE Quiz Competition (2025)",
+    "Vice President — Data Analytics Club"
+  ]
+}
