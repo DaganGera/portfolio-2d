@@ -54,9 +54,9 @@ function App() {
         </div>
       )}
 
-      {/* Controls helper */}
+      {/* Controls helper - Hidden on small mobile screens to save space */}
       {!modalContent && (
-        <div className="absolute bottom-6 left-6 z-10 bg-black/60 backdrop-blur-md p-4 rounded-xl border border-white/20 shadow-xl pointer-events-none">
+        <div className="hidden sm:block absolute bottom-6 left-6 z-10 bg-black/60 backdrop-blur-md p-4 rounded-xl border border-white/20 shadow-xl pointer-events-none">
           <p className="font-bold text-white mb-2 text-sm uppercase tracking-wider">Controls</p>
           <div className="flex items-center gap-3 mb-2 text-sm text-gray-300">
             <div className="flex gap-1">
@@ -90,9 +90,9 @@ function App() {
 
       {/* Modals */}
       {modalContent && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200" onClick={handleClose}>
+        <div className="absolute inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200" onClick={handleClose}>
           <div
-            className="relative bg-zinc-950/95 border border-zinc-800 w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-2xl p-8 sm:p-10 shadow-2xl"
+            className="relative bg-zinc-950/95 border border-zinc-800 w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-xl sm:rounded-2xl p-6 sm:p-10 shadow-2xl"
             onClick={e => e.stopPropagation()}
           >
             <button onClick={handleClose} className="absolute top-5 right-5 p-2 bg-zinc-800 hover:bg-zinc-700 text-gray-300 hover:text-white rounded-full transition">
@@ -102,13 +102,13 @@ function App() {
             {/* Modal Content Rendering */}
             {modalContent === 'about' && (
               <div className="animate-in slide-in-from-bottom-4 duration-300">
-                <div className="flex items-center gap-6 mb-6">
-                  <div className="w-24 h-24 rounded-2xl bg-gradient-to-tr from-blue-600 to-emerald-500 flex items-center justify-center shadow-lg border-2 border-zinc-800 shrink-0">
+                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 mb-6 text-center sm:text-left">
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-tr from-blue-600 to-emerald-500 flex items-center justify-center shadow-lg border-2 border-zinc-800 shrink-0">
                     <User size={40} className="text-white/80" />
                   </div>
                   <div>
-                    <h2 className="text-4xl font-extrabold mb-1 tracking-tight">{userData.name}</h2>
-                    <p className="text-xl text-blue-400 font-medium">{userData.role}</p>
+                    <h2 className="text-3xl sm:text-4xl font-extrabold mb-1 tracking-tight">{userData.name}</h2>
+                    <p className="text-lg sm:text-xl text-blue-400 font-medium">{userData.role}</p>
                   </div>
                 </div>
 
@@ -155,8 +155,8 @@ function App() {
             {modalContent === 'projects' && (
               <div className="animate-in slide-in-from-bottom-4 duration-300">
                 <div className="inline-block px-3 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full text-sm font-medium mb-4">Laboratory</div>
-                <h2 className="text-4xl font-extrabold mb-8 tracking-tight">Projects Showcase</h2>
-                <div className="grid gap-6 sm:grid-cols-2">
+                <h2 className="text-3xl sm:text-4xl font-extrabold mb-6 sm:mb-8 tracking-tight">Projects Showcase</h2>
+                <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
                   {userData.projects.map((proj, i) => (
                     <div key={i} className="bg-zinc-900/40 border border-zinc-800 rounded-xl p-6 hover:border-emerald-500/50 hover:bg-zinc-900 transition flex flex-col h-full group">
                       <h3 className="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">{proj.title}</h3>
@@ -170,7 +170,7 @@ function App() {
             {modalContent === 'skills' && (
               <div className="animate-in slide-in-from-bottom-4 duration-300">
                 <div className="inline-block px-3 py-1 bg-yellow-500/10 text-yellow-400 border border-yellow-500/20 rounded-full text-sm font-medium mb-4">Library</div>
-                <h2 className="text-4xl font-extrabold mb-8 tracking-tight">Technical Skills</h2>
+                <h2 className="text-3xl sm:text-4xl font-extrabold mb-6 sm:mb-8 tracking-tight">Technical Skills</h2>
                 <div className="flex flex-wrap gap-2.5 mb-12">
                   {userData.skills.map((skill, i) => (
                     <span key={i} className="px-4 py-2 bg-zinc-900 text-zinc-300 font-medium text-sm rounded-lg border border-zinc-800 hover:bg-zinc-800 hover:text-white hover:border-zinc-600 transition cursor-default">
@@ -198,8 +198,8 @@ function App() {
             {modalContent === 'contact' && (
               <div className="animate-in slide-in-from-bottom-4 duration-300">
                 <div className="inline-block px-3 py-1 bg-red-500/10 text-red-400 border border-red-500/20 rounded-full text-sm font-medium mb-4">Post Office</div>
-                <h2 className="text-4xl font-extrabold mb-4 tracking-tight">Let's Connect</h2>
-                <p className="text-xl text-zinc-400 mb-10">Feel free to reach out for collaborations or new opportunities.</p>
+                <h2 className="text-3xl sm:text-4xl font-extrabold mb-4 tracking-tight">Let's Connect</h2>
+                <p className="text-lg sm:text-xl text-zinc-400 mb-8 sm:mb-10">Feel free to reach out for collaborations or new opportunities.</p>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <a href={`mailto:${userData.email}`} className="flex items-center gap-4 bg-zinc-900/60 p-5 rounded-xl border border-zinc-800 hover:border-red-500/50 hover:bg-zinc-800 transition group">
                     <div className="p-3 bg-zinc-950 rounded-lg group-hover:scale-110 transition shrink-0">
